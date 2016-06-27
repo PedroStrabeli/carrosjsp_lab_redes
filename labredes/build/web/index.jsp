@@ -6,6 +6,7 @@
 
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="classes.Usuario" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +16,10 @@
     <a href="../../../Desktop/Desenvolvimento WEB/Exemplo/listaContas.jsp"></a>
     <body>
         <%! private int contAcessos; %>
+        <%Usuario u = (Usuario)session.getAttribute("usuario"); 
+        if (u==null) {
+
+        %>
         <h1>Bem Vindo!</h1> 
         <h2>Identifique-se para continuar</h2>
         <form action = "getlogin.jsp" method="POST">
@@ -52,7 +57,7 @@
             <br><br> 
             <%
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/labredes","administrador","admin");
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/carros_db","pstr","pstr_poli");
             
             Statement getUsers = conn.createStatement();
             ResultSet rs = getUsers.executeQuery("SELECT * FROM \"USUARIOS\"");
@@ -68,8 +73,14 @@
             <%
             }
             conn.close();
+            
+        
             %>
             
         </table>
+            <%
+            }
+                else response.sendRedirect("listaCarros.jsp");
+            %>
     </body>
 </html>

@@ -2,6 +2,7 @@
 <%@page pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.lang.*" %>
+<%@ page import="classes.Usuario" %>
 
 <html>
     <head>
@@ -9,6 +10,8 @@
         <title>Comprar carro</title>
     </head>
     <body>
+        <% Usuario u = (Usuario)session.getAttribute("usuario"); 
+        if (u==null) response.sendRedirect("index.jsp");%>
         
         <h2>Carro:</h2>
         <br>
@@ -19,10 +22,10 @@
             <%
                 String id = request.getParameter("idCarro");
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/labredes","administrador","admin");
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/carros_db","pstr","pstr_poli");
             
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM \"CARROS\" WHERE IDCARROS=" + id);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM \"CARROS\" WHERE IDCARRO=" + id);
             
             if(rs.next()) {
             %>

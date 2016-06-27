@@ -21,11 +21,17 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
         <title>Lista Carros</title>
     </head>
     <body>
+        <% Usuario u = (Usuario)session.getAttribute("usuario"); 
+        if (u==null) {
+            response.sendRedirect("index.jsp");
+        }
+        
+%>
         
         <h2>Carros:</h2>
         <br>
-        <% Usuario u = (Usuario)session.getAttribute("usuario"); %>
-        <p>Olá, <%= u.nome %></p>
+        
+        
         <table width="35%" border="0" cellspacing="5">
             <tr bgcolor="#CCCC99"> 
                 <td><b><font face="Verdana" size="2" color="#000000">Ano</font></b></td>
@@ -37,7 +43,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             
             <%
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/labredes","administrador","admin");
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/carros_db","pstr","pstr_poli");
             
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM \"CARROS\"");
@@ -52,7 +58,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                 <td height="19"><font face="Verdana" size="2"><%=rs.getString("preco")%></font></td>
                 <td height="19">
                     <form action="comprar.jsp" method="GET">
-                        <input type="hidden" name="idCarro" value="<%=rs.getString("idCarros")%>">
+                        <input type="hidden" name="idCarro" value="<%=rs.getString("idCarro")%>">
                         <input type="submit" value="Comprar">
                     </form>
                 </td>

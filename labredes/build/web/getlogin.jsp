@@ -18,7 +18,7 @@
 
         <% 
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/labredes","administrador","admin");
+            Connection conn = DriverManager.getConnection("jdbc:derby://localhost:1527/carros_db","pstr","pstr_poli");
             
             Statement statement = conn.createStatement();
 

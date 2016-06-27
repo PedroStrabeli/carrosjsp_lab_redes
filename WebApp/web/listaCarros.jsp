@@ -23,7 +23,7 @@
                 <td><b><font face="Verdana" size="2" color="#000000">Ano</font></b></td>
                 <td><b><font face="Verdana" size="2" color="#000000">Cor</font></b></td>
                 <td><b><font face="Verdana" size="2" color="#000000">Preço</font></b></td>
-                <td><b><font face="Verdana" size="2" color="#000000"></font></b></td>
+                
             </tr>
             
             <%
@@ -42,6 +42,7 @@
                 <td height="19"><font face="Verdana" size="2"><%=rs.getString("cor")%></font></td>
                 <td height="19"><font face="Verdana" size="2"><%=rs.getString("preco")%></font></td>
                 <td height="19"><font face="Verdana" size="2"><%=rs.getString("preco")%></font></td>
+                <td><b><button href="comprar.jsp?idCarro=<%rs.getString("idCarro")%>">Comprar</button>></b></td>
             </tr>
             
             <%

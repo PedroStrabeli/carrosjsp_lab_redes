@@ -10,6 +10,8 @@
 <%@page import="org.jdom.input.*"%>
 <%@page import="java.net.*"%>
 <%@page import="java.io.*"%>
+<%@ page import="classes.Usuario" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,6 +19,8 @@
         <title>Transação</title>
     </head>
     <body>
+        <% Usuario u = (Usuario)session.getAttribute("usuario"); 
+        if (u == null) response.sendRedirect("index.jsp");%>
         <h1>Transação</h1>
     </body>
     
